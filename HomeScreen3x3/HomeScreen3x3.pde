@@ -1,6 +1,7 @@
 //Global Variable
-color rectFill, ellipseFill, defaultColor=#FFFFFF;
-boolean nightMode=false;
+color rectFill1, ellipseFill, defaultColor=#FFFFFF;
+//boolean nightMode=false;
+PFont buttonFont;
 //
 float xBox1, yBox1, widthBox1, heightBox1;
 float xBox2, yBox2, widthBox2, heightBox2;
@@ -29,6 +30,13 @@ float xCircle14, yCircle14, diameterCircle14;
 float xCircle15, yCircle15, diameterCircle15;
 float xCircle16, yCircle16, diameterCircle16;
 //
+float xStart, yStart, widthStart, heightStart;
+float xQuit, yQuit, widthQuit, heightQuit;
+String quitText1= "Leave";
+String box5Text= "Find the button";
+String startText= "Start";
+
+//
 void setup () {
   //CANVAS
   size (900, 600); //Landscape
@@ -56,50 +64,6 @@ void setup () {
   }
   //
   //Population
-  xBox1 = appWidth*0/3; 
-  yBox1 = appHeight*0/3; 
-  widthBox1 = appWidth*1/3;  
-  heightBox1 = appHeight*1/3;
-  //
-  xBox2 = appWidth*1/3;
-  yBox2 = appHeight*0/3;
-  widthBox2 = appWidth*1/3;
-  heightBox2 = appHeight*1/3;
-  //
-  xBox3 = appWidth*2/3;
-  yBox3 = appHeight*0/3;
-  widthBox3 = appWidth*1/3; 
-  heightBox3 = appHeight*1/3;
-  //
-  xBox4 = appWidth*0/3;
-  yBox4 = appHeight*1/3;
-  widthBox4 = appWidth*1/3;
-  heightBox4 = appHeight*1/3;
-  //
-  xBox5 = appWidth*1/3;
-  yBox5 = appHeight*1/3;
-  widthBox5 = appWidth*1/3; 
-  heightBox5 = appHeight*1/3;
-  //
-  xBox6 = appWidth*2/3;
-  yBox6 = appHeight*1/3;
-  widthBox6 = appWidth*1/3; 
-  heightBox6 = appHeight*1/3;
-  //
-  xBox7 = appWidth*0/3;
-  yBox7 = appHeight*2/3;
-  widthBox7 = appWidth*1/3;
-  heightBox7 = appHeight*1/3;
-  //
-  xBox8 = appWidth*1/3;
-  yBox8 = appHeight*2/3;
-  widthBox8 = appWidth*1/3;
-  heightBox8 = appHeight*1/3;
-  //
-  xBox9 = appWidth*2/3;
-  yBox9 = appHeight*2/3;
-  widthBox9 = appWidth*1/3;
-  heightBox9 = appHeight*1/3;
   //
   xCircle1 = appWidth*0/3;
   yCircle1 = appHeight*0/3;
@@ -164,21 +128,98 @@ void setup () {
   xCircle16 = appWidth*3/3;
   yCircle16 = appHeight*3/3;
   diameterCircle16 = appWidth*1/20;
-}///End setup
+  //
+  xStart = appWidth*3.5/9;
+  yStart = appHeight*4/9;
+  widthStart = appWidth*2/9; 
+  heightStart = appHeight*.5/9;
+  //
+  xQuit = appWidth*3.5/9;
+  yQuit = appHeight*5/9;
+  widthQuit = appWidth*2/9;
+  heightQuit = appHeight*.5/9;
+  //
+  xBox1 = appWidth*0/3; 
+  yBox1 = appHeight*0/3; 
+  widthBox1 = appWidth*1/3;  
+  heightBox1 = appHeight*1/3;
+  //
+  xBox2 = appWidth*1/3;
+  yBox2 = appHeight*0/3;
+  widthBox2 = appWidth*1/3;
+  heightBox2 = appHeight*1/3;
+  //
+  xBox3 = appWidth*2/3;
+  yBox3 = appHeight*0/3;
+  widthBox3 = appWidth*1/3; 
+  heightBox3 = appHeight*1/3;
+  //
+  xBox4 = appWidth*0/3;
+  yBox4 = appHeight*1/3;
+  widthBox4 = appWidth*1/3;
+  heightBox4 = appHeight*1/3;
+  //
+  xBox5 = appWidth*1/3;
+  yBox5 = appHeight*1/3;
+  widthBox5 = appWidth*1/3; 
+  heightBox5 = appHeight*1/3;
+  //
+  xBox6 = appWidth*2/3;
+  yBox6 = appHeight*1/3;
+  widthBox6 = appWidth*1/3; 
+  heightBox6 = appHeight*1/3;
+  //
+  xBox7 = appWidth*0/3;
+  yBox7 = appHeight*2/3;
+  widthBox7 = appWidth*1/3;
+  heightBox7 = appHeight*1/3;
+  //
+  xBox8 = appWidth*1/3;
+  yBox8 = appHeight*2/3;
+  widthBox8 = appWidth*1/3;
+  heightBox8 = appHeight*1/3;
+  //
+  xBox9 = appWidth*2/3;
+  yBox9 = appHeight*2/3;
+  widthBox9 = appWidth*1/3;
+  heightBox9 = appHeight*1/3;
+  //
+  //Text Setup
+  //String[] fontList = PFont.list(); //To list all fonts available on system
+  println("Start of Console");
+  //printArray(fontList); //For listing all possible fonts to choose, then createFont
+  buttonFont = createFont ("Verdana", 10); //Must also Tools / Create Font / Find Font / Do Not Press "OK"
+  fill (#000000); //Ink
+  textAlign (CENTER, CENTER);
+  textFont (buttonFont, 10);
+}//End setup
 //
 void draw () {
-  fill (rectFill);
+  fill (#000000); //Ink
+  textAlign (CENTER, CENTER);
+  textFont (buttonFont, 10);
+  //
+  text (quitText1, xQuit, yQuit, widthQuit, heightQuit);
+  textAlign (TOP, CENTER);
+  text (box5Text, xBox5, yBox5, widthBox5, heightBox5);
+  textAlign (CENTER,CENTER);
+  text (startText, xStart, yStart, widthStart, heightStart);
+  //
+  fill (rectFill1);
   rect (xBox1, yBox1, widthBox1, heightBox1);//Top left
+  fill (#DB6DF5);
   rect (xBox2, yBox2, widthBox2, heightBox2);//Top Center
   rect (xBox3, yBox3, widthBox3, heightBox3);//Top Right
   rect (xBox4, yBox4, widthBox4, heightBox4);//Center Left
+  fill (defaultColor);
   rect (xBox5, yBox5, widthBox5, heightBox5);//Middle
+  fill (#DB6DF5);
   rect (xBox6, yBox6, widthBox6, heightBox6);//Center Right
   rect (xBox7, yBox7, widthBox7, heightBox7);//Bottom Left
   rect (xBox8, yBox8, widthBox8, heightBox8);//Bottom Center
   rect (xBox9, yBox9, widthBox9, heightBox9);//Bottom Right
   //
-  fill (ellipseFill);
+  fill (#FFFFFF);
   ellipse (xCircle1, yCircle1, diameterCircle1, diameterCircle1);
   ellipse (xCircle2, yCircle2, diameterCircle2, diameterCircle2);
   ellipse (xCircle3, yCircle3, diameterCircle3, diameterCircle3);
@@ -195,28 +236,22 @@ void draw () {
   ellipse (xCircle14, yCircle14, diameterCircle14, diameterCircle14);
   ellipse (xCircle15, yCircle15, diameterCircle15, diameterCircle15);
   ellipse (xCircle16, yCircle16, diameterCircle16, diameterCircle16);
-  fill(defaultColor);
+  //
+  fill(#EDE600);
+  rect(xStart, yStart, widthStart, heightStart);
+  rect(xQuit, yQuit, widthQuit, heightQuit);
 }//End draw
 //
 void keyPressed () {
-  if ( nightMode == false ) {//nightMode Switch
-    nightMode = true;
-  } else {
-    nightMode = false;
-  }//End nightMode Switch
-  if (key == 'n' || key == 'N') {
-    if(nightMode==true){
-      rectFill= color(#DB6DF5);
-      ellipseFill= color(#FFFFFF);
-    } else {
-      rectFill= color(#A77714);
-      ellipseFill= color(#000000);
-    }
-  }//End nightMode True
-  //
 }//End keyPressed
 //
 void mousePressed () {
+  if (mouseX>=xQuit && mouseX<=xQuit+widthQuit && mouseY>=yQuit && mouseY<=yQuit+heightQuit) exit();
+  if (mouseX>=xStart && mouseX<=xStart+widthStart && mouseY>=yStart && mouseY<=yStart+heightStart) {
+    rectFill1=#FC9187;
+  } else {
+    rectFill1=#DB6DF5;
+  }//End box1
 }//End mousePressed
 //
 //End MAIN Program
