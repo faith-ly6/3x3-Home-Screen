@@ -1,7 +1,8 @@
 //Global Variable
-color rectFill1, ellipseFill, defaultColor=#FFFFFF;
+color rectFill1, ellipseFill, defaultColor=#FFFFFF, rectFill2, rectFill3, rectFill4, rectFill6, rectFill7, rectFill8, rectFill9;
 //boolean nightMode=false;
 PFont buttonFont;
+boolean button1ON=false;
 //
 float xBox1, yBox1, widthBox1, heightBox1;
 float xBox2, yBox2, widthBox2, heightBox2;
@@ -32,9 +33,21 @@ float xCircle16, yCircle16, diameterCircle16;
 //
 float xStart, yStart, widthStart, heightStart;
 float xQuit, yQuit, widthQuit, heightQuit;
+float xButton1, yButton1, widthButton1, heightButton1;
+float xButton2, yButton2, widthButton2, heightButton2;
+float xButton3, yButton3, widthButton3, heightButton3;
+float xButton4, yButton4, widthButton4, heightButton4;
+float xButton6, yButton6, widthButton6, heightButton6;
+float xButton7, yButton7, widthButton7, heightButton7;
+float xButton8, yButton8, widthButton8, heightButton8;
 String quitText1= "Leave";
 String box5Text= "Find the button";
 String startText= "Start";
+//
+float xImage, yImage, widthImageAdjusted, heightImageAdjusted, imageWidthRatio=0.0, imageHeightRatio=0.0;
+float imageLargerDimension, imageSmallerDimension;
+Boolean widthLarger=false, heightLarger=false, imageON=false;
+PImage pic1;
 
 //
 void setup () {
@@ -64,6 +77,33 @@ void setup () {
   }
   //
   //Population
+  pic1 = loadImage("../Congrates.png");//Dimensions width 275, height 183
+  int picWidth = 275;
+  int picHeight = 183;
+   if ( picWidth >= picHeight ) { //Image Dimension Comparison
+    //True if Landscape or Square
+    imageLargerDimension = picWidth;
+    imageSmallerDimension = picHeight;
+    widthLarger = true;
+  } else {
+    //False if Portrait
+    imageLargerDimension = picHeight;
+    imageSmallerDimension = picWidth;
+    heightLarger = true;
+  }//End Image Dimension Comparison
+  println(imageSmallerDimension, imageLargerDimension, widthLarger, heightLarger); //Verify variables details
+  //Aspect Ratio
+  //Note: single line IFs can be summarized into IF-ELSE or IF-ElseIF-Else
+  //Computer chooses which formulae to execute
+  if ( widthLarger == true ) imageWidthRatio = imageLargerDimension / imageLargerDimension;
+  if ( widthLarger == true ) imageHeightRatio = imageSmallerDimension / imageLargerDimension;
+  if ( heightLarger == true ) imageWidthRatio = imageSmallerDimension / imageLargerDimension;
+  if ( heightLarger == true ) imageHeightRatio = imageLargerDimension / imageLargerDimension;
+  //
+  xImage = appWidth*0/3;
+  yImage = appHeight*1/3;
+  widthImageAdjusted = appWidth*1/3;
+  heightImageAdjusted = appHeight*1/3;
   //
   xCircle1 = appWidth*0/3;
   yCircle1 = appHeight*0/3;
@@ -184,6 +224,42 @@ void setup () {
   widthBox9 = appWidth*1/3;
   heightBox9 = appHeight*1/3;
   //
+  
+  //
+  xButton1 = appWidth*0/9;
+  yButton1 = appHeight*2/9;
+  widthButton1 = appWidth*1/18; 
+  heightButton1 = appHeight*1/18;
+  //
+  xButton2 = appWidth*5/9;
+  yButton2 = appHeight*1/9;
+  widthButton2 = appWidth*1/18; 
+  heightButton2 = appHeight*1/18;
+  //
+  xButton3 = appWidth*8/9;
+  yButton3 = appHeight*0/9;
+  widthButton3 = appWidth*1/18; 
+  heightButton3 = appHeight*1/18;
+  //
+  xButton4 = appWidth*7/9;
+  yButton4 = appHeight*4/9;
+  widthButton4 = appWidth*1/18; 
+  heightButton4 = appHeight*1/18;
+  //
+  xButton6 = appWidth*6/9;
+  yButton6 = appHeight*7/9;
+  widthButton6 = appWidth*1/18; 
+  heightButton6 = appHeight*1/18;
+  //
+  xButton7 = appWidth*5/9;
+  yButton7 = appHeight*8/9;
+  widthButton7 = appWidth*1/18; 
+  heightButton7 = appHeight*1/18;
+  //
+  xButton8 = appWidth*2/9;
+  yButton8 = appHeight*7/9;
+  widthButton8 = appWidth*1/18; 
+  heightButton8 = appHeight*1/18;
   //Text Setup
   //String[] fontList = PFont.list(); //To list all fonts available on system
   println("Start of Console");
@@ -195,28 +271,26 @@ void setup () {
 }//End setup
 //
 void draw () {
-  fill (#000000); //Ink
-  textAlign (CENTER, CENTER);
-  textFont (buttonFont, 10);
-  //
-  text (quitText1, xQuit, yQuit, widthQuit, heightQuit);
-  textAlign (TOP, CENTER);
-  text (box5Text, xBox5, yBox5, widthBox5, heightBox5);
-  textAlign (CENTER,CENTER);
-  text (startText, xStart, yStart, widthStart, heightStart);
-  //
+  
+  if(imageON==true) image (pic1, xImage, yImage, widthImageAdjusted, heightImageAdjusted);
   fill (rectFill1);
   rect (xBox1, yBox1, widthBox1, heightBox1);//Top left
-  fill (#DB6DF5);
+  fill (rectFill2);
   rect (xBox2, yBox2, widthBox2, heightBox2);//Top Center
+  fill (rectFill3);
   rect (xBox3, yBox3, widthBox3, heightBox3);//Top Right
+  //noFill();
+  if( imageON == false) {fill (rectFill4);} else {noFill();};
   rect (xBox4, yBox4, widthBox4, heightBox4);//Center Left
   fill (defaultColor);
   rect (xBox5, yBox5, widthBox5, heightBox5);//Middle
-  fill (#DB6DF5);
+  fill (rectFill6);
   rect (xBox6, yBox6, widthBox6, heightBox6);//Center Right
+  fill (rectFill7);
   rect (xBox7, yBox7, widthBox7, heightBox7);//Bottom Left
+  fill (rectFill8);
   rect (xBox8, yBox8, widthBox8, heightBox8);//Bottom Center
+  fill (rectFill9);
   rect (xBox9, yBox9, widthBox9, heightBox9);//Bottom Right
   //
   fill (#FFFFFF);
@@ -240,6 +314,31 @@ void draw () {
   fill(#EDE600);
   rect(xStart, yStart, widthStart, heightStart);
   rect(xQuit, yQuit, widthQuit, heightQuit);
+  fill (rectFill1);
+  if(button1ON==true) rect(xButton1, yButton1, widthButton1, heightButton1);
+  fill (rectFill2);
+  rect(xButton2, yButton2, widthButton2, heightButton2);
+  fill (rectFill3);
+  rect(xButton3, yButton3, widthButton3, heightButton3);
+  fill (rectFill6);
+  rect(xButton4, yButton4, widthButton4, heightButton4);
+  fill (rectFill9);
+  rect(xButton6, yButton6, widthButton6, heightButton6);
+  fill (rectFill8);
+  rect(xButton7, yButton7, widthButton7, heightButton7);
+  fill (rectFill7);
+  rect(xButton8, yButton8, widthButton8, heightButton8);
+  //
+  fill (#000000); //Ink
+  textAlign (CENTER, CENTER);
+  textFont (buttonFont, 10);
+  //
+  text (quitText1, xQuit, yQuit, widthQuit, heightQuit);
+  textAlign (TOP, CENTER);
+  text (box5Text, xBox5, yBox5, widthBox5, heightBox5);
+  textAlign (CENTER,CENTER);
+  text (startText, xStart, yStart, widthStart, heightStart);
+  //
 }//End draw
 //
 void keyPressed () {
@@ -249,9 +348,30 @@ void mousePressed () {
   if (mouseX>=xQuit && mouseX<=xQuit+widthQuit && mouseY>=yQuit && mouseY<=yQuit+heightQuit) exit();
   if (mouseX>=xStart && mouseX<=xStart+widthStart && mouseY>=yStart && mouseY<=yStart+heightStart) {
     rectFill1=#FC9187;
-  } else {
-    rectFill1=#DB6DF5;
   }//End box1
+  if (mouseX>=xStart && mouseX<=xStart+widthStart && mouseY>=yStart && mouseY<=yStart+heightStart) {if(button1ON==false) {button1ON=true;}}
+  if (mouseX>=xButton1 && mouseX<=xButton1+widthButton1 && mouseY>=yButton1 && mouseY<=yButton1+heightButton1) {
+    rectFill2=#FFAF46;
+  }//End button1
+  if (mouseX>=xButton2 && mouseX<=xButton2+widthButton2 && mouseY>=yButton2 && mouseY<=yButton2+heightButton2) {
+    rectFill3=#EAFF79;
+  }//End button2
+  if (mouseX>=xButton3 && mouseX<=xButton3+widthButton3 && mouseY>=yButton3 && mouseY<=yButton3+heightButton3) {
+    rectFill6=#88FF79;
+  }//End button3
+  if (mouseX>=xButton4 && mouseX<=xButton4+widthButton4 && mouseY>=yButton4 && mouseY<=yButton4+heightButton4) {
+    rectFill9=#989AFF;
+  }//End button4
+  if (mouseX>=xButton6 && mouseX<=xButton6+widthButton6 && mouseY>=yButton6 && mouseY<=yButton6+heightButton6) {
+    rectFill8=#BE6AE0;
+  }//End button6
+   if (mouseX>=xButton7 && mouseX<=xButton7+widthButton7 && mouseY>=yButton7 && mouseY<=yButton7+heightButton7) {
+    rectFill7=#FA90F0;
+  }//End button7
+  if (mouseX>=xButton8 && mouseX<=xButton8+widthButton8 && mouseY>=yButton8 && mouseY<=yButton8+heightButton8) {
+    imageON=true;
+    
+  }//End button8
 }//End mousePressed
 //
 //End MAIN Program
