@@ -1,5 +1,7 @@
 //Global Variable
-color rectFill1, ellipseFill, defaultColor=#FFFFFF, rectFill2, rectFill3, rectFill4, rectFill6, rectFill7, rectFill8, rectFill9;
+color rectFill1, rectFill2, rectFill3, rectFill4, rectFill6, rectFill7, rectFill8, rectFill9;
+color buttonFill1, buttonFill2, buttonFill3, buttonFill4, buttonFill6, buttonFill7, buttonFill8;
+color ellipseFill, defaultColor=#FFFFFF;
 //boolean nightMode=false;
 PFont buttonFont;
 boolean button1ON=false;
@@ -331,10 +333,10 @@ void draw () {
   //
   fill (#000000); //Ink
   textAlign (CENTER, CENTER);
-  textFont (buttonFont, 10);
+  textFont (buttonFont, 20);
   //
   text (quitText1, xQuit, yQuit, widthQuit, heightQuit);
-  textAlign (TOP, CENTER);
+  textAlign (CENTER, TOP);
   text (box5Text, xBox5, yBox5, widthBox5, heightBox5);
   textAlign (CENTER,CENTER);
   text (startText, xStart, yStart, widthStart, heightStart);
@@ -370,7 +372,6 @@ void mousePressed () {
   }//End button7
   if (mouseX>=xButton8 && mouseX<=xButton8+widthButton8 && mouseY>=yButton8 && mouseY<=yButton8+heightButton8) {
     imageON=true;
-    
   }//End button8
 }//End mousePressed
 //
