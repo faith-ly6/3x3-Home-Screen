@@ -4,7 +4,7 @@ color buttonFill1, buttonFill2, buttonFill3, buttonFill4, buttonFill6, buttonFil
 color ellipseFill, defaultColor=#FFFFFF;
 //boolean nightMode=false;
 PFont buttonFont;
-boolean button1ON=false;
+boolean button1ON=false, button2ON=false, button3ON=false, button4ON=false, button6ON=false, button7ON=false, button8ON=false;
 //
 float xBox1, yBox1, widthBox1, heightBox1;
 float xBox2, yBox2, widthBox2, heightBox2;
@@ -228,7 +228,7 @@ void setup () {
   //
   
   //
-  xButton1 = appWidth*0/9;
+  xButton1 = appWidth*.5/9;
   yButton1 = appHeight*2/9;
   widthButton1 = appWidth*1/18; 
   heightButton1 = appHeight*1/18;
@@ -239,7 +239,7 @@ void setup () {
   heightButton2 = appHeight*1/18;
   //
   xButton3 = appWidth*8/9;
-  yButton3 = appHeight*0/9;
+  yButton3 = appHeight*0.5/9;
   widthButton3 = appWidth*1/18; 
   heightButton3 = appHeight*1/18;
   //
@@ -248,7 +248,7 @@ void setup () {
   widthButton4 = appWidth*1/18; 
   heightButton4 = appHeight*1/18;
   //
-  xButton6 = appWidth*6/9;
+  xButton6 = appWidth*6.5/9;
   yButton6 = appHeight*7/9;
   widthButton6 = appWidth*1/18; 
   heightButton6 = appHeight*1/18;
@@ -259,7 +259,7 @@ void setup () {
   heightButton7 = appHeight*1/18;
   //
   xButton8 = appWidth*2/9;
-  yButton8 = appHeight*7/9;
+  yButton8 = appHeight*7.5/9;
   widthButton8 = appWidth*1/18; 
   heightButton8 = appHeight*1/18;
   //Text Setup
@@ -316,20 +316,63 @@ void draw () {
   fill(#EDE600);
   rect(xStart, yStart, widthStart, heightStart);
   rect(xQuit, yQuit, widthQuit, heightQuit);
-  fill (rectFill1);
-  if(button1ON==true) rect(xButton1, yButton1, widthButton1, heightButton1);
-  fill (rectFill2);
-  rect(xButton2, yButton2, widthButton2, heightButton2);
-  fill (rectFill3);
+  //
+  stroke (rectFill1);
+  fill (buttonFill1);
+  if(button1ON==true) {if (mouseX> xButton1 && mouseX< xButton1+widthButton1 && mouseY>yButton1 && mouseY<yButton1+heightButton1) {
+    buttonFill1 = #FAB7B1;
+  } else {
+    buttonFill1 = #FC9187;}rect(xButton1, yButton1, widthButton1, heightButton1);}
+  //
+  stroke (rectFill2);
+  fill (buttonFill2);
+  if (button2ON==true){if (mouseX> xButton2 && mouseX< xButton2+widthButton2 && mouseY>yButton2 && mouseY<yButton2+heightButton2) {
+    buttonFill2 = #FFBF71;
+  } else {
+    buttonFill2 = #FFAF46;}
+  rect(xButton2, yButton2, widthButton2, heightButton2);}
+  //
+  stroke (rectFill3);
+  fill (buttonFill3);
+  if (button3ON==true){if (mouseX> xButton3 && mouseX< xButton3+widthButton3 && mouseY>yButton3 && mouseY<yButton3+heightButton3) {
+    buttonFill3 = #F2FCBA;
+  } else {
+    buttonFill3 = #EAFF79;}}
   rect(xButton3, yButton3, widthButton3, heightButton3);
-  fill (rectFill6);
+  //
+  stroke (rectFill6);
+  fill (buttonFill4);
+  if (button4ON==true){if (mouseX> xButton4 && mouseX< xButton4+widthButton4 && mouseY>yButton4 && mouseY<yButton4+heightButton4) {
+    buttonFill4 = #B1FCA6;
+  } else {
+    buttonFill4 = #88FF79;}}
   rect(xButton4, yButton4, widthButton4, heightButton4);
-  fill (rectFill9);
+  //
+  stroke (rectFill9);
+  fill (buttonFill6);
+  if (button6ON==true){if (mouseX> xButton6 && mouseX< xButton6+widthButton6 && mouseY>yButton6 && mouseY<yButton6+heightButton6) {
+    buttonFill6 = #98A0FF;
+  } else {
+    buttonFill6 = #989AFF;}}
   rect(xButton6, yButton6, widthButton6, heightButton6);
-  fill (rectFill8);
+  //
+  stroke (rectFill8);
+  fill (buttonFill7);
+   if (button7ON==true){if (mouseX> xButton7 && mouseX< xButton7+widthButton7 && mouseY>yButton7 && mouseY<yButton7+heightButton7) {
+    buttonFill7 = #BE6EE6; 
+  } else {
+    buttonFill7 = #BE6AE0;}}
   rect(xButton7, yButton7, widthButton7, heightButton7);
-  fill (rectFill7);
+  //
+  stroke (rectFill7);
+  fill (buttonFill8);
+   if (button8ON==true){if (mouseX> xButton8 && mouseX< xButton8+widthButton8 && mouseY>yButton8 && mouseY<yButton8+heightButton8) {
+    buttonFill8 = #FF96F5;
+  } else {
+    buttonFill8 = #FA90F0;}}
   rect(xButton8, yButton8, widthButton8, heightButton8);
+  //
+  stroke (0,0,0);
   //
   fill (#000000); //Ink
   textAlign (CENTER, CENTER);
@@ -350,26 +393,47 @@ void mousePressed () {
   if (mouseX>=xQuit && mouseX<=xQuit+widthQuit && mouseY>=yQuit && mouseY<=yQuit+heightQuit) exit();
   if (mouseX>=xStart && mouseX<=xStart+widthStart && mouseY>=yStart && mouseY<=yStart+heightStart) {
     rectFill1=#FC9187;
+    buttonFill1=#FC9187; 
   }//End box1
   if (mouseX>=xStart && mouseX<=xStart+widthStart && mouseY>=yStart && mouseY<=yStart+heightStart) {if(button1ON==false) {button1ON=true;}}
+  //
+  if (mouseX>=xButton1 && mouseX<=xButton1+widthButton1 && mouseY>=yButton1 && mouseY<=yButton1+heightButton1) {if(button2ON==false) {button2ON=true;}}
   if (mouseX>=xButton1 && mouseX<=xButton1+widthButton1 && mouseY>=yButton1 && mouseY<=yButton1+heightButton1) {
     rectFill2=#FFAF46;
+    buttonFill2=#FFAF46;
   }//End button1
+  //
+  if (mouseX>=xButton2 && mouseX<=xButton2+widthButton2 && mouseY>=yButton2 && mouseY<=yButton2+heightButton2) {if(button3ON==false) {button3ON=true;}}
   if (mouseX>=xButton2 && mouseX<=xButton2+widthButton2 && mouseY>=yButton2 && mouseY<=yButton2+heightButton2) {
     rectFill3=#EAFF79;
+    buttonFill3=#EAFF79;
   }//End button2
+  //
+  if (mouseX>=xButton3 && mouseX<=xButton3+widthButton3 && mouseY>=yButton3 && mouseY<=yButton3+heightButton3) {if(button4ON==false) {button4ON=true;}}
   if (mouseX>=xButton3 && mouseX<=xButton3+widthButton3 && mouseY>=yButton3 && mouseY<=yButton3+heightButton3) {
     rectFill6=#88FF79;
+    buttonFill4=#88FF79;
   }//End button3
+  //
+  if (mouseX>=xButton4 && mouseX<=xButton4+widthButton4 && mouseY>=yButton4 && mouseY<=yButton4+heightButton4) {if(button6ON==false) {button6ON=true;}}
   if (mouseX>=xButton4 && mouseX<=xButton4+widthButton4 && mouseY>=yButton4 && mouseY<=yButton4+heightButton4) {
     rectFill9=#989AFF;
+    buttonFill6=#989AFF;
   }//End button4
+  //
+  if (mouseX>=xButton6 && mouseX<=xButton6+widthButton6 && mouseY>=yButton6 && mouseY<=yButton6+heightButton6) {if(button7ON==false) {button7ON=true;}}
   if (mouseX>=xButton6 && mouseX<=xButton6+widthButton6 && mouseY>=yButton6 && mouseY<=yButton6+heightButton6) {
     rectFill8=#BE6AE0;
+    buttonFill7=#BE6AE0;
   }//End button6
+  //
+  if (mouseX>=xButton7 && mouseX<=xButton7+widthButton7 && mouseY>=yButton7 && mouseY<=yButton7+heightButton7) {if(button8ON==false) {button8ON=true;}}
    if (mouseX>=xButton7 && mouseX<=xButton7+widthButton7 && mouseY>=yButton7 && mouseY<=yButton7+heightButton7) {
     rectFill7=#FA90F0;
+    buttonFill8=#FA90F0;
   }//End button7
+  //
+  if (mouseX>=xButton8 && mouseX<=xButton8+widthButton8 && mouseY>=yButton8 && mouseY<=yButton8+heightButton8) {if(button7ON==false) {button7ON=true;}}
   if (mouseX>=xButton8 && mouseX<=xButton8+widthButton8 && mouseY>=yButton8 && mouseY<=yButton8+heightButton8) {
     imageON=true;
   }//End button8
